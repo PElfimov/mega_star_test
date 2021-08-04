@@ -1,6 +1,6 @@
 import {Switch, Route} from "react-router-dom"
 import {Error404} from "../error404"
-import {Table} from "../table"
+import {Table} from "./parts/table"
 
 export function Departments() {
   return (

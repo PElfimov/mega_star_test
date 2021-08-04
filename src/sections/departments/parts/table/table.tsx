@@ -1,4 +1,4 @@
-import {Department} from "../../lib/interfaces"
+import {Department} from "../../../../lib/interfaces"
 import {Button, Table as BootstrapTable} from "react-bootstrap"
 import {Dropdown} from "./parts/dropdown"
 
