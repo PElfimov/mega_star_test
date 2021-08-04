@@ -16,15 +16,16 @@ function App() {
         </Col>
       </Row>
       <Row className={`flex-grow-1`}>
-        <Col xs={1}>
+        <Col xs={2}>
           <Navigation />
         </Col>
         <Col className={`bg-white`}>
-          {/* <Switch>
-            <Route path="/" component={<Departments />} />
-            <Route path="/employees" component={<Employees />} />
-            <Route path="*" component={<Error404 />} />
-          </Switch> */}
+          <Switch>
+            <Route exact path="/" component={() => <Departments />} />
+            <Route exact path="/departments*" render={() => <Departments />} />
+            <Route exact path="/employees*" render={() => <Employees />} />
+            <Route path="*" render={() => <Error404 />} />
+          </Switch>
         </Col>
       </Row>
       <Row>

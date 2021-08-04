@@ -3,10 +3,13 @@ import {Link} from "react-router-dom"
 
 export function Navigation() {
   return (
-    <Nav defaultActiveKey="/home" className="flex-column">
-      {/* <Nav.Link href="/home">Active</Nav.Link> */}
-      <Nav.Link>{/* <Link to="/"> Departments</Link> */}</Nav.Link>
-      <Nav.Link>{/* <Link to="/employees">Employees</Link> */}</Nav.Link>
+    <Nav className="flex-column">
+      <Link className={`nav-link`} to="/departments">
+        Departments
+      </Link>
+      <Link className={`nav-link`} to="/employees">
+        Employees
+      </Link>
     </Nav>
   )
 }
