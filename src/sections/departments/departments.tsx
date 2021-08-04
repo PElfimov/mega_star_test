@@ -5,7 +5,7 @@ import {Table} from "../table"
 export function Departments() {
   return (
     <>
-      <h1>Departments</h1>
+      <h3>Departments</h3>
       <Switch>
         <Route exact path="/departments" component={() => <Table />} />
         {/* <Route exact path="/departments*" render={() => <Departments />} />

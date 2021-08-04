@@ -19,7 +19,7 @@ function App() {
         <Col xs={2} className={`p-3`}>
           <Navigation />
         </Col>
-        <Col className={`bg-white`}>
+        <Col className={`bg-white pt-3`}>
           <Switch>
             <Route exact path="/" component={() => <Departments />} />
             <Route exact path="/departments*" render={() => <Departments />} />
