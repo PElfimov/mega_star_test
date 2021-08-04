@@ -1,9 +1,17 @@
-import styles from "./departments.module.css"
+import {Switch, Route} from "react-router-dom"
+import {Error404} from "../error404"
+import {Table} from "../table"
 
 export function Departments() {
   return (
-    <div className={styles.root}>
+    <>
       <h1>Departments</h1>
-    </div>
+      <Switch>
+        <Route exact path="/departments" component={() => <Table />} />
+        {/* <Route exact path="/departments*" render={() => <Departments />} />
+        <Route exact path="/employees*" render={() => <Employees />} /> */}
+        <Route path="*" render={() => <Error404 />} />
+      </Switch>
+    </>
   )
 }

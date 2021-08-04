@@ -16,7 +16,7 @@ function App() {
         </Col>
       </Row>
       <Row className={`flex-grow-1`}>
-        <Col xs={2}>
+        <Col xs={2} className={`p-3`}>
           <Navigation />
         </Col>
         <Col className={`bg-white`}>
