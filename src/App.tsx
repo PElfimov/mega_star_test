@@ -1,14 +1,12 @@
-import "./App.css";
-import { Simple } from "./components/simple";
-import { Function } from "./components/function";
+import "bootstrap/dist/css/bootstrap.min.css"
+import {Button} from "react-bootstrap"
 
 function App() {
   return (
     <>
-      <Simple />
-      <Function text="Hello" />
+      <Button variant="primary">HEllow</Button>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
