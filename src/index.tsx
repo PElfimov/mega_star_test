@@ -4,12 +4,34 @@ import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import {BrowserRouter} from "react-router-dom"
+import configureAPI from "./api"
+import {createStore, applyMiddleware} from "redux"
+import {Provider} from "react-redux"
+import {compose} from "recompose"
+import thunk from "redux-thunk"
+import reducer from "./store/index"
+import persistState from "redux-localstorage"
+import Operation from "./store/actions/async-actions/async-actions"
+
+const api = configureAPI((...args) => store.dispatch({...args}))
+
+const store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(thunk.withExtraArgument(api)),
+    persistState(),
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ ? (window as any).__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+  )
+)
+store.dispatch(Operation.loadOffers())
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 )
