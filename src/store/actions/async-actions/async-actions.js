@@ -1,12 +1,11 @@
+import {ModelDepartment} from "../../model-department"
 import {ActionCreator} from "../action-creator/action-creator"
 
-import ModelDepartments from "../../model-reviews/model-separtments "
-
 const Operation = {
-  loadReviews: (hotelId) => (dispatch, _, api) => {
-    return api.get(`/comments/${hotelId}`).then((response) => {
-      const reviews = ModelReviews.parseReviews(response.data)
-      dispatch(ActionCreator.loadReviews(reviews))
+  loadDepartments: () => (dispatch, _, api) => {
+    return api.get(`/departments`).then((response) => {
+      const reviews = ModelDepartment.parseDepartments(response.data)
+      dispatch(ActionCreator.loadDepartments(reviews))
     })
   }
   // addReview: (hotelId, rating, comment, unblockedForm, addResponseErr) => (dispatch, _, api) => {

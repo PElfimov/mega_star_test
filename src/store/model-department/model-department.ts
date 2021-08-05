@@ -1,6 +1,6 @@
-import {Department, Status} from "./../../lib/interfaces"
+import {Department, Status} from "../../lib/interfaces"
 
-export default class ModelDepartment {
+export class ModelDepartment {
   id: number
   name: string = ``
   status: Status = `active`
