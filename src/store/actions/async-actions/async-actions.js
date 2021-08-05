@@ -1,9 +1,10 @@
-import {ModelDepartment} from "../../model-department"
+import {ModelDepartment} from "../../model-department/model-department"
 import {ActionCreator} from "../action-creator/action-creator"
 
 const Operation = {
   loadDepartments: () => (dispatch, _, api) => {
     return api.get(`/departments`).then((response) => {
+      console.log("response", response)
       const reviews = ModelDepartment.parseDepartments(response.data)
       dispatch(ActionCreator.loadDepartments(reviews))
     })

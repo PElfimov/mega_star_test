@@ -1,10 +1,10 @@
 import {Department, Status} from "../../lib/interfaces"
 
 export class ModelDepartment {
-  id: number
+  id: number = 0
   name: string = ``
   status: Status = `active`
-  description: string | undefined
+  description: string | undefined = ``
 
   constructor(data: Department) {
     this.id = data.id
@@ -13,11 +13,11 @@ export class ModelDepartment {
     this.description = data.description
   }
 
-  static parseDepartment(data) {
+  static parseDepartment(data: Department) {
     return new ModelDepartment(data)
   }
 
-  static parseDepartments(data) {
+  static parseDepartments(data: Department[]) {
     return data.map(ModelDepartment.parseDepartment)
   }
 }

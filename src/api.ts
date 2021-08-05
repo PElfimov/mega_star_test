@@ -3,7 +3,7 @@ import axios from "axios"
 
 const createAPI = (dispatch) => {
   const api = axios.create({
-    baseURL: process.env.REACT_APP_API,
+    baseURL: process.env.REACT_APP_API_DOMAIN,
     timeout: 5000,
     withCredentials: true
   })

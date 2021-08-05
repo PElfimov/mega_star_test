@@ -23,7 +23,7 @@ const store = createStore(
     (window as any).__REDUX_DEVTOOLS_EXTENSION__ ? (window as any).__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
   )
 )
-store.dispatch(Operation.loadOffers())
+store.dispatch(Operation.loadDepartments())
 
 ReactDOM.render(
   <React.StrictMode>
