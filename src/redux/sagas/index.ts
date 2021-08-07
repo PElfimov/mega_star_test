@@ -1,11 +1,10 @@
 import {spawn, call, all} from "redux-saga/effects"
-import loadDefaultStore from "./loadDefaultStore"
-import pageLoaderSaga from "./pageLoadSaga"
+import employeesSaga from "./employees"
 
 export default function* rootSaga() {
   console.log("Sagas")
 
-  const sagas = [loadDefaultStore, pageLoaderSaga]
+  const sagas = [employeesSaga]
 
   const retrySagas = yield sagas.map((saga) => {
     return spawn(function* () {

@@ -23,5 +23,6 @@ export interface EmployeesState {
 
 export interface RootStore {
   app: App
+  employees: EmployeesState
   router: {}
 }
