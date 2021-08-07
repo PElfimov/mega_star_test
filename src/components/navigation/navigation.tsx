@@ -2,7 +2,6 @@ import {Nav} from "react-bootstrap"
 import {Link} from "react-router-dom"
 
 export function Navigation() {
-  console.log(window.location.pathname)
   return (
     <Nav variant="pills" className="flex-column" activeKey="1">
       <Nav.Item>
