@@ -13,6 +13,14 @@ export interface App {
   employees: {}
 }
 
+export interface EmployeesState {
+  page: number
+  search: string
+  loading: boolean
+  error: {} | null
+  data: {} | null
+}
+
 export interface RootStore {
   app: App
   router: {}
