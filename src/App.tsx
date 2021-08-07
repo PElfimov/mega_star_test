@@ -6,12 +6,12 @@ import {Switch, Route} from "react-router-dom"
 import {Departments} from "./sections/departments"
 import {Employees} from "./sections/employees"
 import {Error404} from "./sections/error404"
-import {useSelector} from "react-redux"
+// import {useSelector} from "react-redux"
 
 function App() {
-  const store = useSelector((store) => store)
+  // const store = useSelector((store) => store)
 
-  console.log(store)
+  // console.log(store)
 
   return (
     <Container className={`bg-light d-flex flex-column ${styles.root}`}>
@@ -26,7 +26,7 @@ function App() {
         </Col>
         <Col className={`bg-white pt-3`}>
           <Switch>
-            <Route exact path="/" component={() => <Departments />} />
+            <Route exact path="/" render={() => <Departments />} />
             <Route exact path="/departments*" render={() => <Departments />} />
             <Route exact path="/employees*" render={() => <Employees />} />
             <Route path="*" render={() => <Error404 />} />

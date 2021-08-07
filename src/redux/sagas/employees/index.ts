@@ -12,7 +12,8 @@ function fetchUsers() {
 }
 
 function* loadEmployeesList() {
-  const reqest = yield call(fetchUsers)
+  const request = yield call(fetchUsers)
+  console.log(`loadEmployeesList`, request)
 
   yield put({type: EmployeesActionType.LOAD_EMPLOYEES_SUCCESS})
 }
@@ -22,8 +23,9 @@ export function* loadEmployeesOnRouteEnter() {
 
   while (true) {
     const action = yield take(LOCATION_CHANGE)
+    console.log(`action`, action)
 
-    if ((action.payload.location.pathname = `/employees`)) {
+    if (action.payload.location.pathname === "/employees") {
       const state = yield select((s: RootStore) => s.employees)
       const {page, search} = state
       yield put({
@@ -36,5 +38,5 @@ export function* loadEmployeesOnRouteEnter() {
 
 export default function* employeesSaga() {
   yield fork(loadEmployeesOnRouteEnter)
-  yield takeEvery(EmployeesActionType.LOAD_EMPLOYEES, loadEmployeesList)
+  // yield takeEvery(EmployeesActionType.LOAD_EMPLOYEES, loadEmployeesList)
 }
