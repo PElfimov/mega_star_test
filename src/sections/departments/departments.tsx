@@ -9,7 +9,6 @@ export function Departments() {
       <Switch>
         <Route exact path="/" component={() => <Table />} />
         <Route exact path="/departments*" component={() => <Table />} />
-
         <Route path="*" render={() => <Error404 />} />
       </Switch>
     </>
