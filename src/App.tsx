@@ -6,8 +6,13 @@ import {Switch, Route} from "react-router-dom"
 import {Departments} from "./sections/departments"
 import {Employees} from "./sections/employees"
 import {Error404} from "./sections/error404"
+import {useSelector} from "react-redux"
 
 function App() {
+  const store = useSelector((store) => store)
+
+  console.log(store)
+
   return (
     <Container className={`bg-light d-flex flex-column ${styles.root}`}>
       <Row>
