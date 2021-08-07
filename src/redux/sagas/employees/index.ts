@@ -23,7 +23,6 @@ export function* loadEmployeesOnRouteEnter() {
 
   while (true) {
     const action = yield take(LOCATION_CHANGE)
-    console.log(`action`, action)
 
     if (action.payload.location.pathname === "/employees") {
       const state = yield select((s: RootStore) => s.employees)
@@ -38,5 +37,5 @@ export function* loadEmployeesOnRouteEnter() {
 
 export default function* employeesSaga() {
   yield fork(loadEmployeesOnRouteEnter)
-  // yield takeEvery(EmployeesActionType.LOAD_EMPLOYEES, loadEmployeesList)
+  yield takeEvery(EmployeesActionType.LOAD_EMPLOYEES, loadEmployeesList)
 }
