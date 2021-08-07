@@ -1,5 +1,6 @@
 import {useEffect} from "react"
-import {useDispatch, useSelector, RootStateOrAny} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import {RootStore} from "../../lib/interfaces"
 import styles from "./employees.module.css"
 
 export function Employees() {
@@ -9,7 +10,7 @@ export function Employees() {
     dispatch({type: `LOAD_BLOCK_DATA`})
   }, [])
 
-  const UsersData = useSelector((store: RootStateOrAny) => store.app.employees)
+  const UsersData = useSelector((store: RootStore) => store.app.employees)
 
   console.log("UsersData,", UsersData)
 

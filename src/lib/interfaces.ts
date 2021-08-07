@@ -8,3 +8,12 @@ export interface Department {
   updated_at?: string //"2020-10-19T14:41:58.000Z",
   deleted_at?: string //"2020-10-19T14:41:58.000Z"
 }
+
+export interface App {
+  employees: {}
+}
+
+export interface RootStore {
+  app: App
+  router: {}
+}
