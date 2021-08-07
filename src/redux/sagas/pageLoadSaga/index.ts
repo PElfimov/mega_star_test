@@ -1,6 +1,6 @@
 import axios from "axios"
 import {LOCATION_CHANGE} from "connected-react-router"
-import {call, fork, take} from "redux-saga/effects"
+import {call, fork, take, put} from "redux-saga/effects"
 
 function fetchUsers() {
   return axios({
@@ -11,7 +11,9 @@ function fetchUsers() {
 
 function* loadUsers() {
   const reqest = yield call(fetchUsers)
+
   console.log(`Users Data`, reqest)
+  yield put({type: `EMPLOYEES_LOADED`, payload: reqest})
 }
 
 export default function* pageLoaderSaga() {
