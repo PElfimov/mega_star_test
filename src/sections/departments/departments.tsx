@@ -7,9 +7,9 @@ export function Departments() {
     <>
       <h3>Departments</h3>
       <Switch>
-        <Route exact path="/departments" component={() => <Table />} />
-        {/* <Route exact path="/departments*" render={() => <Departments />} />
-        <Route exact path="/employees*" render={() => <Employees />} /> */}
+        <Route exact path="/" component={() => <Table />} />
+        <Route exact path="/departments*" component={() => <Table />} />
+
         <Route path="*" render={() => <Error404 />} />
       </Switch>
     </>
