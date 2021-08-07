@@ -9,10 +9,6 @@ export interface Department {
   deleted_at?: string //"2020-10-19T14:41:58.000Z"
 }
 
-export interface App {
-  employees: {}
-}
-
 export interface EmployeesState {
   page: number
   search: string
@@ -22,7 +18,6 @@ export interface EmployeesState {
 }
 
 export interface RootStore {
-  app: App
   employees: EmployeesState
   router: {}
 }

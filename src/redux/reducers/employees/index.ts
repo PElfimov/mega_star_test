@@ -24,6 +24,7 @@ export default function employeesReducer(state = initialEmployeesState, action) 
     case EmployeesActionType.LOAD_EMPLOYEES_SUCCESS: {
       return {
         ...state,
+        loading: false,
         data: action.payload
       }
     }

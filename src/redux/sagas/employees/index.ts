@@ -13,9 +13,11 @@ function fetchUsers() {
 
 function* loadEmployeesList() {
   const request = yield call(fetchUsers)
-  console.log(`loadEmployeesList`, request)
-
-  yield put({type: EmployeesActionType.LOAD_EMPLOYEES_SUCCESS})
+  const data = request.data
+  yield put({
+    type: EmployeesActionType.LOAD_EMPLOYEES_SUCCESS,
+    payload: data
+  })
 }
 
 export function* loadEmployeesOnRouteEnter() {
