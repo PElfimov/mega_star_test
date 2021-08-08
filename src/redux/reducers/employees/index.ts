@@ -1,4 +1,4 @@
-import {EmployeesActionType} from "./actions"
+import {EMPLOYEES} from "./actions"
 import {EmployeesState} from "./../../../lib/interfaces"
 
 const initialEmployeesState: EmployeesState = {
@@ -11,7 +11,7 @@ const initialEmployeesState: EmployeesState = {
 
 export default function employeesReducer(state = initialEmployeesState, action) {
   switch (action.type) {
-    case EmployeesActionType.LOAD_EMPLOYEES: {
+    case EMPLOYEES.LOAD: {
       const {page, search} = action.payload
       return {
         ...state,
@@ -21,7 +21,7 @@ export default function employeesReducer(state = initialEmployeesState, action) 
       }
     }
 
-    case EmployeesActionType.LOAD_EMPLOYEES_SUCCESS: {
+    case EMPLOYEES.LOAD_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -29,7 +29,7 @@ export default function employeesReducer(state = initialEmployeesState, action) 
       }
     }
 
-    case EmployeesActionType.LOAD_EMPLOYEES_FAILURE: {
+    case EMPLOYEES.LOAD_FAILURE: {
       return {
         ...state,
         loading: false,

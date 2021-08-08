@@ -17,6 +17,12 @@ export interface EmployeesState {
   data: {} | null
 }
 
+export interface EmployeDetailsState {
+  loading: boolean
+  error: {} | null
+  data: {} | null
+}
+
 export interface RootStore {
   employees: EmployeesState
   router: {}

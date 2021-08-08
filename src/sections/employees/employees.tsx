@@ -4,7 +4,7 @@ import styles from "./employees.module.css"
 
 export function Employees() {
   const employees = useSelector(selectEmployees)
-  console.log(employees)
+  console.log(`log_employees`, employees)
 
   return (
     <div className={styles.root}>
