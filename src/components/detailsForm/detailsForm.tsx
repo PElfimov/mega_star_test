@@ -10,7 +10,7 @@ export function DetailsForm({field}: Props) {
     <BotForm>
       {field.map((item) => {
         return (
-          <BotForm.Group key={item.name} className="mb-3" controlId="formBasicEmail">
+          <BotForm.Group key={item.name} className="mb-1" controlId="formBasicEmail">
             <label htmlFor="" className={`form-label`}>
               {item.name}
             </label>
@@ -20,16 +20,16 @@ export function DetailsForm({field}: Props) {
               className={"form-control"}
               disabled={item.disabled}
               value={item.vale}
-              // onChange={item.onChange}
+              onChange={item.onChange}
             />
             {/* <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text> */}
           </BotForm.Group>
         )
       })}
 
-      {/* <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit">
         Submit
-      </Button> */}
+      </Button>
     </BotForm>
   )
 }
