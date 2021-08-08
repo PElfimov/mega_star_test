@@ -54,10 +54,10 @@ export function* routeChange() {
   while (true) {
     const action = yield take(LOCATION_CHANGE)
 
+    const mainPage = matchPath(action.payload.location.pathname, getRoutingConfig(ROUTES_NAME.MAIN))
     const departmentsPage = matchPath(action.payload.location.pathname, getRoutingConfig(ROUTES_NAME.DEPARTMENTS))
-    console.log(departmentsPage)
 
-    if (departmentsPage) {
+    if (departmentsPage || mainPage) {
       const state = yield select(selectEmployees)
       const {page, search} = state
       yield put({
