@@ -4,7 +4,7 @@ import {EmployeDetailsState} from "./../../../lib/interfaces"
 const initialEmployeDetailsState: EmployeDetailsState = {
   loading: false,
   error: null,
-  data: {}
+  data: null
 }
 
 export default function employeDetailsReducer(state = initialEmployeDetailsState, action) {

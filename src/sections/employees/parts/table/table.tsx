@@ -1,13 +1,11 @@
-import {Department} from "../../../../lib/interfaces"
 import styles from "./table.module.css"
 import {Button, Spinner, Table as BootstrapTable} from "react-bootstrap"
 import {Dropdown} from "./parts/dropdown"
 import {useSelector} from "react-redux"
-import {selectDepartments} from "../../../../redux/reducers/departments/selectors"
+import {selectEmployees} from "../../../../redux/reducers/employees/selectors"
 
 export function Table() {
-  const departments = useSelector(selectDepartments)
-  const {loading, data} = departments
+  const {loading, data} = useSelector(selectEmployees)
 
   return (
     <>
@@ -23,6 +21,7 @@ export function Table() {
               <th>#</th>
               <th>Status</th>
               <th>Name</th>
+              <th>Last Name</th>
               <th>Description</th>
               <th>Action</th>
             </tr>
@@ -35,6 +34,7 @@ export function Table() {
                     <td>{item.id}</td>
                     <td>{item.status}</td>
                     <td>{item.name}</td>
+                    <td>{item.lastName}</td>
                     <td>{item.description}</td>
                     <td>
                       <Dropdown />
