@@ -1,9 +1,6 @@
-.root {
-  padding: 30px;
-  margin: 0;
-}
-
-.h1 {
-  color: aquamarine;
-  font-size: 20px;
+.spinnerWrapper {
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
 }
