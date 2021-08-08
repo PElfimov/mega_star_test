@@ -2,7 +2,7 @@ import styles from "./table.module.css"
 import {Button, Spinner, Table as BootstrapTable} from "react-bootstrap"
 
 import {useSelector} from "react-redux"
-import {selectEmployees} from "../../../../redux/reducers/employees/selectors"
+import {selectEmployees} from "../../../../redux/reducers/selectors/selectors"
 import {Dropdown} from "../../../../components/dropdown"
 
 export function Table() {

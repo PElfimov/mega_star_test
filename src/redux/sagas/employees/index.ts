@@ -1,6 +1,6 @@
 import {EMPLOYE_DETAILS} from "./../../reducers/employeDetails/actions"
 import {getRoutingConfig, ROUTES_NAME} from "./../../../sections/app/routes"
-import {selectEmployees} from "./../../reducers/employees/selectors"
+import {selectEmployees} from "../../reducers/selectors/selectors"
 import {EMPLOYEES} from "./../../reducers/employees/actions"
 import axios from "axios"
 import {LOCATION_CHANGE} from "connected-react-router"
