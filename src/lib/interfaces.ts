@@ -21,3 +21,10 @@ export interface RootStore {
   employees: EmployeesState
   router: {}
 }
+
+export interface Routes {
+  id: string
+  path: string
+  exact: boolean
+  component: JSX.Element
+}

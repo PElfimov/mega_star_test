@@ -2,17 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import {Container, Row, Col} from "react-bootstrap"
 import {Navigation} from "./components/navigation"
 import styles from "./App.module.css"
-import {Switch, Route} from "react-router-dom"
-import {Departments} from "./sections/departments"
-import {Employees} from "./sections/employees"
-import {Error404} from "./sections/error404"
-// import {useSelector} from "react-redux"
+import Routes from "./routes"
 
 function App() {
-  // const store = useSelector((store) => store)
-
-  // console.log(store)
-
   return (
     <Container className={`bg-light d-flex flex-column ${styles.root}`}>
       <Row>
@@ -25,12 +17,7 @@ function App() {
           <Navigation />
         </Col>
         <Col className={`bg-white pt-3`}>
-          <Switch>
-            <Route exact path="/" render={() => <Departments />} />
-            <Route exact path="/departments*" render={() => <Departments />} />
-            <Route exact path="/employees*" render={() => <Employees />} />
-            <Route path="*" render={() => <Error404 />} />
-          </Switch>
+          <Routes />
         </Col>
       </Row>
       <Row>
