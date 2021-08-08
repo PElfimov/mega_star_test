@@ -3,7 +3,7 @@ import {combineReducers} from "redux"
 import {connectRouter} from "connected-react-router"
 import employeesReducer from "./employees"
 import employeDetailsReducer from "./employeDetails"
-import departmentsReducer from "./department"
+import departmentsReducer from "./departments"
 
 export const history = createBrowserHistory()
 

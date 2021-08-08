@@ -1,4 +1,4 @@
-import {DEPARTMENT} from "./actions"
+import {DEPARTMENTS} from "./actions"
 import {DepartmentsState} from "../../../lib/interfaces"
 
 const initialDepartmentsState: DepartmentsState = {
@@ -11,7 +11,7 @@ const initialDepartmentsState: DepartmentsState = {
 
 export default function departmentsReducer(state = initialDepartmentsState, action) {
   switch (action.type) {
-    case DEPARTMENT.LOAD: {
+    case DEPARTMENTS.LOAD: {
       const {page, search} = action.payload
       return {
         ...state,
@@ -21,7 +21,7 @@ export default function departmentsReducer(state = initialDepartmentsState, acti
       }
     }
 
-    case DEPARTMENT.LOAD_SUCCESS: {
+    case DEPARTMENTS.LOAD_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -29,7 +29,7 @@ export default function departmentsReducer(state = initialDepartmentsState, acti
       }
     }
 
-    case DEPARTMENT.LOAD_FAILURE: {
+    case DEPARTMENTS.LOAD_FAILURE: {
       return {
         ...state,
         loading: false,
