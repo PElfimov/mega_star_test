@@ -51,7 +51,7 @@ export interface EmployeDetailsState {
 export interface RootStore {
   employees: EmployeesState
   departments: DepartmentsState
-  router: {}
+  router: any
 }
 
 export interface Routes {
