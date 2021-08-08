@@ -6,6 +6,7 @@ import {Employees} from "../employees"
 import {DepartmentsDetails} from "../departmentsDetails"
 import {Error404} from "../error404"
 import {EmployeesDetails} from "../employeesDetails"
+import {Details} from "../../components/details"
 
 export const ROUTES_NAME = {
   MAIN: `MAIN`,
@@ -33,7 +34,7 @@ const routes: RoutesType[] = [
     id: ROUTES_NAME.DEPARTMENT_DETAILS,
     path: `/departments/:id`,
     exact: true,
-    component: <DepartmentsDetails />
+    component: <Details name="departments" />
   },
   {
     id: ROUTES_NAME.EMPLOYEES,
