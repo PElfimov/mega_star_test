@@ -51,6 +51,8 @@ export interface EmployeDetailsState {
 export interface RootStore {
   employees: EmployeesState
   departments: DepartmentsState
+  departmentDetails: DepartmentDetailsState
+  employeDetails: EmployeDetailsState
   router: any
 }
 
@@ -59,4 +61,11 @@ export interface Routes {
   path: string
   exact: boolean
   component: JSX.Element
+}
+
+export interface DetailsField {
+  name: string
+  disabled: boolean
+  vale?: string | number
+  onChange: (e?: any) => void
 }
