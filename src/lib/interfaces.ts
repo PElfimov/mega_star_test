@@ -9,6 +9,14 @@ export interface Department {
   deleted_at?: string //"2020-10-19T14:41:58.000Z"
 }
 
+export interface DepartmentsState {
+  page: number
+  search: string
+  loading: boolean
+  error: {} | null
+  data: Department[] | null
+}
+
 export interface EmployeesState {
   page: number
   search: string
@@ -25,6 +33,7 @@ export interface EmployeDetailsState {
 
 export interface RootStore {
   employees: EmployeesState
+  departments: DepartmentsState
   router: {}
 }
 
