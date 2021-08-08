@@ -1,9 +1,9 @@
 import {Route} from "react-router-dom"
 import {Switch} from "react-router-dom"
-import {Routes as RoutesType} from "./lib/interfaces"
-import {Departments} from "./sections/departments"
-import {Employees} from "./sections/employees"
-import {Error404} from "./sections/error404"
+import {Routes as RoutesType} from "../../lib/interfaces"
+import {Departments} from "../departments"
+import {Employees} from "../employees"
+import {Error404} from "../error404"
 
 const routes: RoutesType[] = [
   {

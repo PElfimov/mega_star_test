@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom"
 import "./index.css"
-import App from "./App"
+import App from "./sections/app/App"
 import {ConnectedRouter} from "connected-react-router"
 import {Provider} from "react-redux"
 import store from "./redux"

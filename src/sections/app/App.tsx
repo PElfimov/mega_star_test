@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Container, Row, Col} from "react-bootstrap"
-import {Navigation} from "./components/navigation"
+import {Navigation} from "../../components/navigation"
 import styles from "./App.module.css"
 import Routes from "./routes"
 
