@@ -17,6 +17,12 @@ export interface DepartmentsState {
   data: Department[] | null
 }
 
+export interface DepartmentDetailsState {
+  loading: boolean
+  error: {} | null
+  data: Department | null
+}
+
 export interface EmployeesState {
   page: number
   search: string
