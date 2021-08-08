@@ -1,6 +1,6 @@
 import styles from "./table.module.css"
 import {Button, Spinner, Table as BootstrapTable} from "react-bootstrap"
-import {Dropdown} from "./parts/dropdown"
+import {Dropdown} from "../../../../components/dropdown"
 import {useSelector} from "react-redux"
 import {selectDepartments} from "../../../../redux/reducers/departments/selectors"
 
@@ -36,7 +36,7 @@ export function Table() {
                     <td>{item.name}</td>
                     <td>{item.description}</td>
                     <td>
-                      <Dropdown />
+                      <Dropdown id={item.id} />
                     </td>
                   </tr>
                 )
