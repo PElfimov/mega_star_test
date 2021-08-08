@@ -1,4 +1,3 @@
-import {Department} from "../../../../lib/interfaces"
 import styles from "./table.module.css"
 import {Button, Spinner, Table as BootstrapTable} from "react-bootstrap"
 import {Dropdown} from "./parts/dropdown"
