@@ -1,14 +1,14 @@
 import {Dropdown as BootstrapDropdown} from "react-bootstrap"
 import {useSelector} from "react-redux"
 import {Link} from "react-router-dom"
-import {RootStore} from "../../lib/interfaces"
+import {currentPath} from "../../redux/reducers/selectors/selectors"
 
 interface Props {
   id: number
 }
 
 export function Dropdown({id}: Props) {
-  const path = useSelector((s: RootStore) => s.router.location.pathname)
+  const path = useSelector(currentPath)
 
   return (
     <BootstrapDropdown>
