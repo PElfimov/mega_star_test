@@ -1,3 +1,4 @@
+import {Spinner} from "react-bootstrap"
 import {useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
@@ -6,7 +7,7 @@ import {getEmployeDetails} from "../../redux/reducers/selectors/selectors"
 import styles from "./employeesDetails.module.css"
 
 export function EmployeesDetails() {
-  const {data} = useSelector(getEmployeDetails)
+  const {data, loading} = useSelector(getEmployeDetails)
 
   const field: DetailsField[] = [
     {name: `Id`, disabled: true, vale: data?.id, onChange: () => {}},
@@ -17,8 +18,13 @@ export function EmployeesDetails() {
 
   return (
     <div className={styles.root}>
-      <h1>EmployeesDetails</h1>
-      <DetailsForm field={field} />
+      <h3>Employees Details</h3>
+      {loading && (
+        <div className={styles.spinnerWrapper}>
+          <Spinner animation="border" />
+        </div>
+      )}
+      {!loading && <DetailsForm field={field} />}
     </div>
   )
 }
