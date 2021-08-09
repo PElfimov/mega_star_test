@@ -1,27 +1,19 @@
 import axios from "axios"
-// import {ActionCreator} from "./store/actions/action-creator/action-creator"
+import {Department, Employe, Method} from "./interfaces"
 
-const createAPI = (dispatch) => {
-  const api = axios.create({
-    baseURL: process.env.REACT_APP_API_DOMAIN,
-    timeout: 5000,
-    withCredentials: true
-  })
-
-  const onSuccess = (response) => response
-  const onFail = (err) => {
-    if (err.response.status === 401) {
-      // dispatch(ActionCreator.requireAuthorization(false))
-      // dispatch(ActionCreator.addLogin(null))
-      console.error(err)
-    }
-
-    return err
-  }
-
-  api.interceptors.response.use(onSuccess, onFail)
-
-  return api
+interface Prop {
+  method: Method
+  path: string
+  id?: number
+  data?: Employe | Department
 }
 
-export default createAPI
+export default function api({method, data, path, id}: Prop) {
+  if (id) path = path.concat(`/${id}`)
+  return axios({
+    method: method,
+    data: data,
+    timeout: 5000,
+    url: `${process.env.REACT_APP_API_DOMAIN}/${path}`
+  })
+}

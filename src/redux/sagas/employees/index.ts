@@ -1,31 +1,19 @@
-import {Employe} from "./../../../lib/interfaces"
 import {EMPLOYE_DETAILS} from "../../reducers/employeDetails/types"
 import {getRoutingConfig, ROUTES_NAME} from "./../../../sections/app/routes"
 import {selectEmployees} from "../../reducers/selectors/selectors"
 import {EMPLOYEES} from "../../reducers/employees/types"
-import axios from "axios"
 import {LOCATION_CHANGE} from "connected-react-router"
 import {call, fork, take, put, takeEvery, select} from "redux-saga/effects"
 import {matchPath} from "react-router"
-import {Method} from "../../../lib/interfaces"
+import api from "../../../lib/api"
 
-function fetchUsers(method: Method, id?: number, data?: Employe) {
-  let path = `employees`
-  if (id) {
-    path = `employees/${id}`
-  }
-  return axios({
-    method: method,
-    data: data,
-    url: `${process.env.REACT_APP_API_DOMAIN}/${path}`
-  })
-}
+const PATH = `employees`
 
 function* loadEmployeDetails(data) {
   const id = data.payload
   console.log(`data.payload`, data)
 
-  const request = yield call(() => fetchUsers(`get`, id))
+  const request = yield call(() => api({method: `get`, id: id, path: PATH}))
   try {
     if (`id` in request.data) {
       yield put({
@@ -46,7 +34,7 @@ function* loadEmployeDetails(data) {
 }
 
 function* loadEmployeesList() {
-  const request = yield call(() => fetchUsers(`get`))
+  const request = yield call(() => api({method: `get`, path: PATH}))
   const data = request.data
   yield put({
     type: EMPLOYEES.LOAD_SUCCESS,

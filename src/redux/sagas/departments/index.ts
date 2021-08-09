@@ -2,26 +2,17 @@ import {DEPARTMENTS} from "../../reducers/departments/types"
 import {DEPARTMENT_DETAILS} from "../../reducers/departmentDetails/types"
 import {getRoutingConfig, ROUTES_NAME} from "./../../../sections/app/routes"
 import {selectEmployees} from "../../reducers/selectors/selectors"
-import axios from "axios"
 import {LOCATION_CHANGE} from "connected-react-router"
 import {call, fork, take, put, takeEvery, select} from "redux-saga/effects"
 import {matchPath} from "react-router"
+import api from "../../../lib/api"
 
-function fetchUsers(id?: number) {
-  let path = `departments`
-  if (id) {
-    path = `departments/${id}`
-  }
-  return axios({
-    method: "get",
-    url: `${process.env.REACT_APP_API_DOMAIN}/${path}`
-  })
-}
+const PATH = `departments`
 
 function* loadDepartmentDetails(data) {
   const id = data.payload
 
-  const request = yield call(() => fetchUsers(id))
+  const request = yield call(() => api({method: `get`, path: PATH, id: id}))
   try {
     if (`id` in request.data) {
       yield put({
@@ -42,7 +33,7 @@ function* loadDepartmentDetails(data) {
 }
 
 function* loadDepartmentsList() {
-  const request = yield call(fetchUsers)
+  const request = yield call(() => api({method: `get`, path: PATH}))
   const data = request.data
   yield put({
     type: DEPARTMENTS.LOAD_SUCCESS,
