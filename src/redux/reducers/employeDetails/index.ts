@@ -5,7 +5,13 @@ const initialEmployeDetailsState: EmployeDetailsState = {
   loading: false,
   unloading: false,
   error: null,
-  data: null
+  data: {
+    id: 0,
+    name: " ",
+    lastName: " ",
+    description: " ",
+    status: `active`
+  }
 }
 
 export default function employeDetailsReducer(state = initialEmployeDetailsState, action) {
