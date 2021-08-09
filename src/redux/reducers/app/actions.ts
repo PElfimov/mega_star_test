@@ -9,3 +9,11 @@ export function hideAlert() {
     type: APP.HIDDEN_ALERT
   }
 }
+
+export function blockedForm() {
+  return {type: APP.FORM_BLOCKED}
+}
+
+export function unblockedForm() {
+  return {type: APP.FORM_UNBLOCKED}
+}
