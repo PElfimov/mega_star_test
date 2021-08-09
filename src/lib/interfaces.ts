@@ -44,6 +44,7 @@ export interface EmployeesState {
 
 export interface EmployeDetailsState {
   loading: boolean
+  unloading: boolean
   error: {} | null
   data: Employe | null
 }
