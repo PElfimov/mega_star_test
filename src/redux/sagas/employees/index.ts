@@ -1,3 +1,4 @@
+import {Alert} from "./../../../lib/interfaces"
 import {EMPLOYE_DETAILS} from "../../reducers/employeDetails/types"
 import {getRoutingConfig, ROUTES_NAME} from "./../../../sections/app/routes"
 import {selectEmployees} from "../../reducers/selectors/selectors"
@@ -6,13 +7,12 @@ import {LOCATION_CHANGE} from "connected-react-router"
 import {call, fork, take, put, takeEvery, select} from "redux-saga/effects"
 import {matchPath} from "react-router"
 import api from "../../../lib/api"
+import {APP} from "../../reducers/app/types"
 
 const PATH = `employees`
 
 function* loadEmployeDetails(data) {
   const id = data.payload
-  console.log(`data.payload`, data)
-
   const request = yield call(() => api({method: `get`, id: id, path: PATH}))
   try {
     if (`id` in request.data) {
@@ -92,9 +92,19 @@ export function* routeChange() {
   }
 }
 
+function* unloadSuccessAction() {
+  yield put({type: APP.FORM_BLOCKED})
+  const alert: Alert = {
+    type: `success`,
+    text: `Saved`
+  }
+  yield put({type: APP.SHOW_ALERT, payload: alert})
+}
+
 export default function* employeesSaga() {
   yield fork(routeChange)
   yield takeEvery(EMPLOYEES.LOAD, loadEmployeesList)
   yield takeEvery(EMPLOYE_DETAILS.LOAD, loadEmployeDetails)
   yield takeEvery(EMPLOYE_DETAILS.UNLOAD, saveEmploye)
+  yield takeEvery(EMPLOYE_DETAILS.UNLOAD_SUCCESS, unloadSuccessAction)
 }

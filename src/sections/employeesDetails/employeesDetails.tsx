@@ -1,18 +1,17 @@
-import {useState} from "react"
 import {Button, Spinner} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
-import {showAlert} from "../../redux/reducers/app/actions"
-import {loadEmploye, saveEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
-import {getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
+import {showAlert, unblockedForm} from "../../redux/reducers/app/actions"
+import {saveEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
+import {getBlockedForm, getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
 import styles from "./employeesDetails.module.css"
 
 export function EmployeesDetails() {
   const loading = useSelector(getEmployeLoading)
   const data = useSelector(getEmploye)
-  const [formIsBlocked, setFormIsBlocked] = useState(true)
+  const formIsBlocked = useSelector(getBlockedForm)
   const dispatch = useDispatch()
 
   const onChangeHandler = (e) => {
@@ -23,15 +22,15 @@ export function EmployeesDetails() {
   const onCancel = (event) => {
     event.preventDefault()
     event.stopPropagation()
-    dispatch(loadEmploye(data?.id))
-    setFormIsBlocked(true)
+    // dispatch(loadEmploye(data?.id))
+    // dispatch(blockedForm())
   }
 
   const onSave = (event) => {
     event.preventDefault()
     event.stopPropagation()
     dispatch(saveEmploye(data))
-    dispatch(showAlert({text: `Saved ....`, type: `warning`}))
+    dispatch(showAlert({text: `Saving is in progress ....`, type: `warning`}))
   }
 
   const field: DetailsField[] = [
@@ -80,7 +79,7 @@ export function EmployeesDetails() {
           type="button"
           className={`mt-2`}
           onClick={() => {
-            setFormIsBlocked(false)
+            dispatch(unblockedForm())
           }}>
           Edit
         </Button>
