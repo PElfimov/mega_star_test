@@ -11,9 +11,11 @@ export function EmployeesDetails() {
   const loading = useSelector(getEmployeLoading)
   const data = useSelector(getEmploye)
   const [formIsBlocked, setFormIsBlocked] = useState(true)
+  const [name, setName] = useState("")
 
-  function onChangeName(e) {
-    const text: string = e.target.value
+  const onChangeHandler = (e) => {
+    console.log({[e.target.name]: e.target.value})
+    // setName((prev) => ({[...prev], ...{[e.target.name]: e.target.value}}))
   }
 
   function onChangeLastName(e) {
@@ -26,7 +28,7 @@ export function EmployeesDetails() {
 
   const field: DetailsField[] = [
     {name: `Id`, disabled: true, vale: data?.id, onChange: () => {}},
-    {name: `Name`, disabled: formIsBlocked, vale: data?.name, onChange: onChangeName},
+    {name: `Name`, disabled: formIsBlocked, vale: name, onChange: onChangeHandler},
     {name: `Last Name`, disabled: formIsBlocked, vale: data?.lastName, onChange: onChangeLastName},
     {name: `Description`, disabled: formIsBlocked, vale: data?.description, onChange: onChangeDescription}
   ]
