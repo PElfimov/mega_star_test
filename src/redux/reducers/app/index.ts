@@ -2,7 +2,8 @@ import {AppState} from "./../../../lib/interfaces"
 import {APP} from "./types"
 
 const initialAppState: AppState = {
-  alert: null
+  alert: null,
+  formIsBlocked: true
 }
 
 export default function appReducer(state = initialAppState, action) {
@@ -18,6 +19,20 @@ export default function appReducer(state = initialAppState, action) {
       return {
         ...state,
         alert: null
+      }
+    }
+
+    case APP.FORM_BLOCKED: {
+      return {
+        ...state,
+        formIsBlocked: true
+      }
+    }
+
+    case APP.FORM_UNBLOCKED: {
+      return {
+        ...state,
+        formIsBlocked: false
       }
     }
 

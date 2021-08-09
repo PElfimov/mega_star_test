@@ -56,6 +56,7 @@ export interface Alert {
 }
 export interface AppState {
   alert: Alert | null
+  formIsBlocked: boolean
 }
 
 export interface RootStore {
