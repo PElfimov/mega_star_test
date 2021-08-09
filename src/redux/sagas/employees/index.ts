@@ -34,12 +34,34 @@ function* loadEmployeDetails(data) {
 }
 
 function* loadEmployeesList() {
-  const request = yield call(() => api({method: `get`, path: PATH}))
-  const data = request.data
-  yield put({
-    type: EMPLOYEES.LOAD_SUCCESS,
-    payload: data
-  })
+  try {
+    const request = yield call(() => api({method: `get`, path: PATH}))
+    const data = request.data
+    yield put({
+      type: EMPLOYEES.LOAD_SUCCESS,
+      payload: data
+    })
+  } catch (error) {
+    yield put({
+      type: EMPLOYE_DETAILS.LOAD_FAILURE,
+      payload: error
+    })
+  }
+}
+
+function* saveEmploye(data) {
+  try {
+    yield call(() => api({method: `post`, path: PATH, data: data.payload}))
+
+    yield put({
+      type: EMPLOYE_DETAILS.UNLOAD_SUCCESS
+    })
+  } catch (error) {
+    yield put({
+      type: EMPLOYE_DETAILS.UNLOAD_FAILURE,
+      payload: error
+    })
+  }
 }
 
 export function* routeChange() {
@@ -74,4 +96,5 @@ export default function* employeesSaga() {
   yield fork(routeChange)
   yield takeEvery(EMPLOYEES.LOAD, loadEmployeesList)
   yield takeEvery(EMPLOYE_DETAILS.LOAD, loadEmployeDetails)
+  yield takeEvery(EMPLOYE_DETAILS.UNLOAD, saveEmploye)
 }

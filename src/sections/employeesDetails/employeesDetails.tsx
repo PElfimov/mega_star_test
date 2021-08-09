@@ -88,7 +88,7 @@ export function EmployeesDetails() {
           <Button variant="primary" type="button" className={`m-2`} onClick={onCancel}>
             Cancel
           </Button>
-          <Button variant="primary" type="button" className={`m-2`} onClick={() => {}}>
+          <Button variant="primary" type="button" className={`m-2`} onClick={onSave}>
             Save
           </Button>
         </>
