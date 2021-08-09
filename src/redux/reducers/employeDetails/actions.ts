@@ -21,7 +21,7 @@ export function saveEmploye(data) {
   }
 }
 
-export function DelEmploye(id) {
+export function delEmploye(id) {
   return {
     type: EMPLOYE_DETAILS.DELETE,
     payload: id

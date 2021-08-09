@@ -1,4 +1,3 @@
-import {Alert} from "./../../../lib/interfaces"
 import {EMPLOYE_DETAILS} from "../../reducers/employeDetails/types"
 import {getRoutingConfig, ROUTES_NAME} from "./../../../sections/app/routes"
 import {selectEmployees} from "../../reducers/selectors/selectors"
@@ -53,10 +52,8 @@ function* loadEmployeesList() {
 function* saveEmploye(data) {
   try {
     yield call(() => api({method: `post`, path: PATH, data: data.payload}))
-
-    yield put({
-      type: EMPLOYE_DETAILS.UNLOAD_SUCCESS
-    })
+    yield put({type: EMPLOYE_DETAILS.UNLOAD_SUCCESS})
+    yield put({type: APP.FORM_BLOCKED})
   } catch (error) {
     yield put({
       type: EMPLOYE_DETAILS.UNLOAD_FAILURE,
@@ -93,13 +90,18 @@ export function* routeChange() {
   }
 }
 
-function* unloadSuccessAction() {
-  yield put({type: APP.FORM_BLOCKED})
-  const alert: Alert = {
-    type: `success`,
-    text: `Saved`
+function* delEmploye(data) {
+  try {
+    yield call(() => api({method: `delete`, path: PATH, id: data.payload}))
+    yield put({
+      type: EMPLOYE_DETAILS.DELETE_SUCCESS
+    })
+  } catch (error) {
+    yield put({
+      type: EMPLOYE_DETAILS.DELETE_FAILURE,
+      payload: error
+    })
   }
-  yield put({type: APP.SHOW_ALERT, payload: alert})
 }
 
 export default function* employeesSaga() {
@@ -107,5 +109,6 @@ export default function* employeesSaga() {
   yield takeEvery(EMPLOYEES.LOAD, loadEmployeesList)
   yield takeEvery(EMPLOYE_DETAILS.LOAD, loadEmployeDetails)
   yield takeEvery(EMPLOYE_DETAILS.UNLOAD, saveEmploye)
-  yield takeEvery(EMPLOYE_DETAILS.UNLOAD_SUCCESS, unloadSuccessAction)
+  yield takeEvery(EMPLOYE_DETAILS.DELETE, delEmploye)
+  yield takeEvery(EMPLOYE_DETAILS.DELETE_SUCCESS, loadEmployeesList)
 }
