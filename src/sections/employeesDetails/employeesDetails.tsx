@@ -1,8 +1,9 @@
 import {useState} from "react"
 import {Button, Spinner} from "react-bootstrap"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
+import {EMPLOYE_DETAILS} from "../../redux/reducers/employeDetails/actions"
 import {getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
 import styles from "./employeesDetails.module.css"
@@ -11,26 +12,44 @@ export function EmployeesDetails() {
   const loading = useSelector(getEmployeLoading)
   const data = useSelector(getEmploye)
   const [formIsBlocked, setFormIsBlocked] = useState(true)
-  const [name, setName] = useState("")
+  const dispatch = useDispatch()
 
   const onChangeHandler = (e) => {
     console.log({[e.target.name]: e.target.value})
-    // setName((prev) => ({[...prev], ...{[e.target.name]: e.target.value}}))
-  }
-
-  function onChangeLastName(e) {
-    const text: string = e.target.value
-  }
-
-  function onChangeDescription(e) {
-    const text: string = e.target.value
+    const value = {...data}
+    value[e.target.name] = e.target.value
+    dispatch({type: EMPLOYE_DETAILS.PUT, payload: value})
   }
 
   const field: DetailsField[] = [
-    {name: `Id`, disabled: true, vale: data?.id, onChange: () => {}},
-    {name: `Name`, disabled: formIsBlocked, vale: name, onChange: onChangeHandler},
-    {name: `Last Name`, disabled: formIsBlocked, vale: data?.lastName, onChange: onChangeLastName},
-    {name: `Description`, disabled: formIsBlocked, vale: data?.description, onChange: onChangeDescription}
+    {
+      label: `ID`,
+      name: `id`,
+      disabled: true,
+      vale: data?.id,
+      onChange: () => {}
+    },
+    {
+      label: `Name`,
+      name: `name`,
+      disabled: formIsBlocked,
+      vale: data?.name,
+      onChange: onChangeHandler
+    },
+    {
+      label: `Last Name`,
+      name: `lastName`,
+      disabled: formIsBlocked,
+      vale: data?.lastName,
+      onChange: onChangeHandler
+    },
+    {
+      label: `Description`,
+      name: `description`,
+      disabled: formIsBlocked,
+      vale: data?.description,
+      onChange: onChangeHandler
+    }
   ]
 
   return (

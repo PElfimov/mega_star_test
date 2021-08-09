@@ -12,7 +12,7 @@ export function DetailsForm({field}: Props) {
         return (
           <BotForm.Group key={item.name} className="mb-1">
             <label htmlFor="" className={`form-label`}>
-              {item.name}
+              {item.label}
             </label>
             <input
               placeholder={`Enter ${item.name}`}

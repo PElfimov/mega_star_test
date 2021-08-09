@@ -54,6 +54,12 @@ export default function employeDetailsReducer(state = initialEmployeDetailsState
         error: action.payload
       }
     }
+    case EMPLOYE_DETAILS.PUT: {
+      return {
+        ...state,
+        data: action.payload
+      }
+    }
 
     default:
       return state
