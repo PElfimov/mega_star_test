@@ -1,0 +1,4 @@
+export const APP = {
+  SHOW_ALERT: `APP_SHOW_ALERT`,
+  HIDDEN_ALERT: `APP_HIDDEN_ALERT`
+}

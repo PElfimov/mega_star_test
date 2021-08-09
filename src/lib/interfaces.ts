@@ -50,7 +50,16 @@ export interface EmployeDetailsState {
   data: Employe | null
 }
 
+export interface Alert {
+  text: string
+  type: "success" | "danger" | "warning"
+}
+export interface AppState {
+  alert: Alert | null
+}
+
 export interface RootStore {
+  app: AppState
   employees: EmployeesState
   departments: DepartmentsState
   departmentDetails: DepartmentDetailsState

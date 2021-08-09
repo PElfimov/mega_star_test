@@ -1,14 +1,17 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Container, Row, Col} from "react-bootstrap"
-// import {Alert} from "../../components/alert"
+import {useSelector} from "react-redux"
+import {Alert} from "../../components/alert"
 import {Navigation} from "../../components/navigation"
+import {getAlert} from "../../redux/reducers/selectors/selectors"
 import styles from "./App.module.css"
 import Routes from "./routes"
 
 function App() {
+  const alert = useSelector(getAlert)
   return (
     <Container className={`bg-light d-flex flex-column ${styles.root}`}>
-      {/* <Alert text={""} /> */}
+      {alert && <Alert alert={alert} />}
       <Row>
         <Col className={`bg-dark`}>
           <h1 className={`text-white`}>Header</h1>

@@ -5,10 +5,12 @@ import employeesReducer from "./employees"
 import employeDetailsReducer from "./employeDetails"
 import departmentsReducer from "./departments"
 import departmentDetailsReducer from "./departmentDetails"
+import appReducer from "./app"
 
 export const history = createBrowserHistory()
 
 const rootReducer = combineReducers({
+  app: appReducer,
   employees: employeesReducer,
   employeDetails: employeDetailsReducer,
   departments: departmentsReducer,
