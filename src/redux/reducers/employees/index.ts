@@ -1,4 +1,4 @@
-import {EMPLOYEES} from "./actions"
+import {EMPLOYEES} from "./types"
 import {EmployeesState} from "./../../../lib/interfaces"
 
 const initialEmployeesState: EmployeesState = {

@@ -1,5 +1,5 @@
-import {DEPARTMENTS} from "./../../reducers/departments/actions"
-import {DEPARTMENT_DETAILS} from "./../../reducers/departmentDetails/actions"
+import {DEPARTMENTS} from "../../reducers/departments/types"
+import {DEPARTMENT_DETAILS} from "../../reducers/departmentDetails/types"
 import {getRoutingConfig, ROUTES_NAME} from "./../../../sections/app/routes"
 import {selectEmployees} from "../../reducers/selectors/selectors"
 import axios from "axios"

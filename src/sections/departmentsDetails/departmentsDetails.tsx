@@ -9,10 +9,27 @@ export function DepartmentsDetails() {
   const {data, loading} = useSelector(getDepartmentDetails)
 
   const field: DetailsField[] = [
-    {name: `Id`, disabled: true, vale: data?.id, onChange: () => {}},
-    {name: `Name`, disabled: true, vale: data?.name, onChange: () => {}},
-    {name: `Status`, disabled: true, vale: data?.status, onChange: () => {}},
-    {name: `Description`, disabled: true, vale: data?.description, onChange: () => {}}
+    {
+      label: `Id`,
+      name: `id`,
+      disabled: true,
+      vale: data?.id,
+      onChange: () => {}
+    },
+    {
+      label: `Name`,
+      name: `name`,
+      disabled: true,
+      vale: data?.name,
+      onChange: () => {}
+    },
+    {
+      label: `Description`,
+      name: `description`,
+      disabled: true,
+      vale: data?.description,
+      onChange: () => {}
+    }
   ]
   console.log(field)
   return (

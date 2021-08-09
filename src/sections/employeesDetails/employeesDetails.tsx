@@ -3,7 +3,7 @@ import {Button, Spinner} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
-import {EMPLOYE_DETAILS} from "../../redux/reducers/employeDetails/actions"
+import {EMPLOYE_DETAILS} from "../../redux/reducers/employeDetails/types"
 import {getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
 import styles from "./employeesDetails.module.css"
@@ -61,15 +61,39 @@ export function EmployeesDetails() {
         </div>
       )}
       {!loading && <DetailsForm field={field} />}
-      <Button
-        variant="primary"
-        type="button"
-        className={`mt-2`}
-        onClick={() => {
-          setFormIsBlocked(false)
-        }}>
-        Edit
-      </Button>
+      {formIsBlocked && (
+        <Button
+          variant="primary"
+          type="button"
+          className={`mt-2`}
+          onClick={() => {
+            setFormIsBlocked(false)
+          }}>
+          Edit
+        </Button>
+      )}
+      {!formIsBlocked && (
+        <>
+          <Button
+            variant="primary"
+            type="button"
+            className={`m-2`}
+            onClick={() => {
+              setFormIsBlocked(false)
+            }}>
+            Cancel
+          </Button>
+          <Button
+            variant="primary"
+            type="button"
+            className={`m-2`}
+            onClick={() => {
+              dispatch({type: EMPLOYE_DETAILS.LOAD})
+            }}>
+            Save
+          </Button>
+        </>
+      )}
     </div>
   )
 }

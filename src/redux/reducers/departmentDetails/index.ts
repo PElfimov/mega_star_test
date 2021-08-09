@@ -1,5 +1,5 @@
 import {DepartmentDetailsState} from "./../../../lib/interfaces"
-import {DEPARTMENT_DETAILS} from "./actions"
+import {DEPARTMENT_DETAILS} from "./types"
 
 const initialDepartmentDetailsState: DepartmentDetailsState = {
   loading: false,
