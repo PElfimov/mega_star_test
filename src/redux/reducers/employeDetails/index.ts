@@ -3,6 +3,7 @@ import {EmployeDetailsState} from "./../../../lib/interfaces"
 
 const initialEmployeDetailsState: EmployeDetailsState = {
   loading: false,
+  unloading: false,
   error: null,
   data: null
 }
@@ -28,6 +29,28 @@ export default function employeDetailsReducer(state = initialEmployeDetailsState
       return {
         ...state,
         loading: false,
+        error: action.payload
+      }
+    }
+    case EMPLOYE_DETAILS.UNLOAD: {
+      return {
+        ...state,
+        unloading: true
+      }
+    }
+
+    case EMPLOYE_DETAILS.UNLOAD_SUCCESS: {
+      return {
+        ...state,
+        unloading: false,
+        data: action.payload
+      }
+    }
+
+    case EMPLOYE_DETAILS.UNLOAD_FAILURE: {
+      return {
+        ...state,
+        unloading: false,
         error: action.payload
       }
     }
