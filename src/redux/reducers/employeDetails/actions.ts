@@ -20,3 +20,10 @@ export function saveEmploye(data) {
     payload: data
   }
 }
+
+export function DelEmploye(id) {
+  return {
+    type: EMPLOYE_DETAILS.DELETE,
+    payload: id
+  }
+}
