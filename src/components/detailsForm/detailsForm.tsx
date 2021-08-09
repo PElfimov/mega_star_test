@@ -17,6 +17,7 @@ export function DetailsForm({field}: Props) {
             <input
               placeholder={`Enter ${item.name}`}
               type="text"
+              name={item.name}
               className={"form-control"}
               disabled={item.disabled}
               value={item.vale}
