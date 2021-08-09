@@ -28,5 +28,5 @@ export default function* appSaga() {
   yield takeEvery(EMPLOYE_DETAILS.DELETE, () => showAlert(alert.deleting))
   yield takeEvery(EMPLOYE_DETAILS.DELETE_SUCCESS, () => showAlert(alert.deleted))
   yield takeEvery(EMPLOYE_DETAILS.DELETE_FAILURE, () => showAlert(alert.wrong))
-  yield takeEvery(APP.FORM_BLOCKED, () => showAlert(alert.saved))
+  yield takeEvery(EMPLOYE_DETAILS.UNLOAD_SUCCESS, () => showAlert(alert.saved))
 }
