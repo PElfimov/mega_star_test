@@ -1,4 +1,4 @@
-import {Button, Form as BotForm} from "react-bootstrap"
+import {Form as BotForm} from "react-bootstrap"
 import {DetailsField} from "../../lib/interfaces"
 
 interface Props {
@@ -10,7 +10,7 @@ export function DetailsForm({field}: Props) {
     <BotForm>
       {field.map((item) => {
         return (
-          <BotForm.Group key={item.name} className="mb-1" controlId="formBasicEmail">
+          <BotForm.Group key={item.name} className="mb-1">
             <label htmlFor="" className={`form-label`}>
               {item.name}
             </label>
@@ -26,10 +26,6 @@ export function DetailsForm({field}: Props) {
           </BotForm.Group>
         )
       })}
-
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
     </BotForm>
   )
 }
