@@ -3,6 +3,7 @@ import {Button, Spinner} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
+import {reloadEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
 import {EMPLOYE_DETAILS} from "../../redux/reducers/employeDetails/types"
 import {getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
@@ -15,10 +16,9 @@ export function EmployeesDetails() {
   const dispatch = useDispatch()
 
   const onChangeHandler = (e) => {
-    console.log({[e.target.name]: e.target.value})
     const value = {...data}
     value[e.target.name] = e.target.value
-    dispatch({type: EMPLOYE_DETAILS.PUT, payload: value})
+    dispatch(updateEmploye(value))
   }
 
   const field: DetailsField[] = [
@@ -88,7 +88,7 @@ export function EmployeesDetails() {
             type="button"
             className={`m-2`}
             onClick={() => {
-              dispatch({type: EMPLOYE_DETAILS.LOAD})
+              dispatch(reloadEmploye())
             }}>
             Save
           </Button>
