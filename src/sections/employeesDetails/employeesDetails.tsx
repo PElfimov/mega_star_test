@@ -3,8 +3,7 @@ import {Button, Spinner} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
-import {reloadEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
-import {EMPLOYE_DETAILS} from "../../redux/reducers/employeDetails/types"
+import {loadEmploye, saveEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
 import {getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
 import styles from "./employeesDetails.module.css"
@@ -19,6 +18,18 @@ export function EmployeesDetails() {
     const value = {...data}
     value[e.target.name] = e.target.value
     dispatch(updateEmploye(value))
+  }
+  const onCancel = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    dispatch(loadEmploye(data?.id))
+    setFormIsBlocked(true)
+  }
+
+  const onSave = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    dispatch(saveEmploye(data))
   }
 
   const field: DetailsField[] = [
@@ -74,22 +85,10 @@ export function EmployeesDetails() {
       )}
       {!formIsBlocked && (
         <>
-          <Button
-            variant="primary"
-            type="button"
-            className={`m-2`}
-            onClick={() => {
-              setFormIsBlocked(false)
-            }}>
+          <Button variant="primary" type="button" className={`m-2`} onClick={onCancel}>
             Cancel
           </Button>
-          <Button
-            variant="primary"
-            type="button"
-            className={`m-2`}
-            onClick={() => {
-              dispatch(reloadEmploye())
-            }}>
+          <Button variant="primary" type="button" className={`m-2`} onClick={() => {}}>
             Save
           </Button>
         </>

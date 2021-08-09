@@ -1,4 +1,5 @@
 export type Status = "inactive" | "active"
+export type Method = "get" | "post" | "delete"
 export interface Department {
   id: number
   name: string

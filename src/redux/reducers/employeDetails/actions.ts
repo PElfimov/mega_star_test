@@ -7,8 +7,16 @@ export function updateEmploye(data) {
   }
 }
 
-export function reloadEmploye() {
+export function loadEmploye(id) {
   return {
-    type: EMPLOYE_DETAILS.RELOAD
+    type: EMPLOYE_DETAILS.LOAD,
+    payload: id
+  }
+}
+
+export function saveEmploye(data) {
+  return {
+    type: EMPLOYE_DETAILS.UNLOAD,
+    payload: data
   }
 }
