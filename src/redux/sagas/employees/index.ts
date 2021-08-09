@@ -31,6 +31,7 @@ function* loadEmployeDetails(data) {
       payload: error
     })
   }
+  yield put({type: APP.FORM_BLOCKED})
 }
 
 function* loadEmployeesList() {

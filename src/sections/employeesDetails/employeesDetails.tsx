@@ -1,9 +1,9 @@
 import {Button, Spinner} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
-import {DetailsField, Employe} from "../../lib/interfaces"
+import {DetailsField} from "../../lib/interfaces"
 import {showAlert, unblockedForm} from "../../redux/reducers/app/actions"
-import {saveEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
+import {loadEmploye, saveEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
 import {getBlockedForm, getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
 import styles from "./employeesDetails.module.css"
@@ -22,8 +22,7 @@ export function EmployeesDetails() {
   const onCancel = (event) => {
     event.preventDefault()
     event.stopPropagation()
-    // dispatch(loadEmploye(data?.id))
-    // dispatch(blockedForm())
+    dispatch(loadEmploye(data?.id))
   }
 
   const onSave = (event) => {
