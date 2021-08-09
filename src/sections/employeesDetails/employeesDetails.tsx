@@ -2,12 +2,13 @@ import {Spinner} from "react-bootstrap"
 import {useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
-import {getEmployeDetails} from "../../redux/reducers/selectors/selectors"
+import {getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
 import styles from "./employeesDetails.module.css"
 
 export function EmployeesDetails() {
-  const {data, loading} = useSelector(getEmployeDetails)
+  const loading = useSelector(getEmployeLoading)
+  const data = useSelector(getEmploye)
 
   const field: DetailsField[] = [
     {name: `Id`, disabled: true, vale: data?.id, onChange: () => {}},
