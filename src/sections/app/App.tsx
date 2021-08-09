@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Container, Row, Col} from "react-bootstrap"
+// import {Alert} from "../../components/alert"
 import {Navigation} from "../../components/navigation"
 import styles from "./App.module.css"
 import Routes from "./routes"
@@ -7,6 +8,7 @@ import Routes from "./routes"
 function App() {
   return (
     <Container className={`bg-light d-flex flex-column ${styles.root}`}>
+      {/* <Alert text={""} /> */}
       <Row>
         <Col className={`bg-dark`}>
           <h1 className={`text-white`}>Header</h1>
