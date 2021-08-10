@@ -1,12 +1,13 @@
 import {takeEvery, put, delay, takeLatest} from "redux-saga/effects"
 
 import {APP} from "../../reducers/app/types"
+import {DEPARTMENT_DETAILS} from "../../reducers/departmentDetails/types"
 import {EMPLOYE_DETAILS} from "../../reducers/employeDetails/types"
 const alert = {
   deleting: {type: `warning`, text: `Delete in progress`},
   deleted: {type: `success`, text: `Deleted`},
   wrong: {type: `danger`, text: `Something is not wrong`},
-  saving:{text: `Saving is in progress ....`, type: `warning`},
+  saving: {text: `Saving is in progress ....`, type: `warning`},
   saved: {type: `success`, text: `Saved`}
 }
 
@@ -34,4 +35,13 @@ export default function* appSaga() {
   yield takeEvery(EMPLOYE_DETAILS.SAVE_NEW, () => showAlert(alert.saving))
   yield takeEvery(EMPLOYE_DETAILS.SAVE_NEW_SUCCESS, () => showAlert(alert.saved))
   yield takeEvery(EMPLOYE_DETAILS.SAVE_NEW_FAILURE, () => showAlert(alert.wrong))
+
+  yield takeEvery(DEPARTMENT_DETAILS.DELETE, () => showAlert(alert.deleting))
+  yield takeEvery(DEPARTMENT_DETAILS.DELETE_SUCCESS, () => showAlert(alert.deleted))
+  yield takeEvery(DEPARTMENT_DETAILS.DELETE_FAILURE, () => showAlert(alert.wrong))
+  yield takeEvery(DEPARTMENT_DETAILS.UNLOAD_SUCCESS, () => showAlert(alert.saved))
+  yield takeEvery(DEPARTMENT_DETAILS.UNLOAD, () => showAlert(alert.saving))
+  yield takeEvery(DEPARTMENT_DETAILS.SAVE_NEW, () => showAlert(alert.saving))
+  yield takeEvery(DEPARTMENT_DETAILS.SAVE_NEW_SUCCESS, () => showAlert(alert.saved))
+  yield takeEvery(DEPARTMENT_DETAILS.SAVE_NEW_FAILURE, () => showAlert(alert.wrong))
 }
