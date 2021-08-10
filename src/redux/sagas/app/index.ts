@@ -31,4 +31,7 @@ export default function* appSaga() {
   yield takeEvery(EMPLOYE_DETAILS.DELETE_FAILURE, () => showAlert(alert.wrong))
   yield takeEvery(EMPLOYE_DETAILS.UNLOAD_SUCCESS, () => showAlert(alert.saved))
   yield takeEvery(EMPLOYE_DETAILS.UNLOAD, () => showAlert(alert.saving))
+  yield takeEvery(EMPLOYE_DETAILS.SAVE_NEW, () => showAlert(alert.saving))
+  yield takeEvery(EMPLOYE_DETAILS.SAVE_NEW_SUCCESS, () => showAlert(alert.saved))
+  yield takeEvery(EMPLOYE_DETAILS.SAVE_NEW_FAILURE, () => showAlert(alert.wrong))
 }
