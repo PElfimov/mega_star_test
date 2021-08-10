@@ -2,7 +2,7 @@ import {Button, Spinner} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
-import {showAlert, unblockedForm} from "../../redux/reducers/app/actions"
+import {unblockedForm} from "../../redux/reducers/app/actions"
 import {loadEmploye, saveEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
 import {getBlockedForm, getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
@@ -29,7 +29,6 @@ export function EmployeesDetails() {
     event.preventDefault()
     event.stopPropagation()
     dispatch(saveEmploye(data))
-    dispatch(showAlert({text: `Saving is in progress ....`, type: `warning`}))
   }
 
   const field: DetailsField[] = [

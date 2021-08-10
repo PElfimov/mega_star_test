@@ -1,4 +1,4 @@
-import {takeEvery, put, delay} from "redux-saga/effects"
+import {takeEvery, put, delay, takeLatest} from "redux-saga/effects"
 
 import {APP} from "../../reducers/app/types"
 import {EMPLOYE_DETAILS} from "../../reducers/employeDetails/types"
@@ -6,6 +6,7 @@ const alert = {
   deleting: {type: `warning`, text: `Delete in progress`},
   deleted: {type: `success`, text: `Deleted`},
   wrong: {type: `danger`, text: `Something is not wrong`},
+  saving:{text: `Saving is in progress ....`, type: `warning`},
   saved: {type: `success`, text: `Saved`}
 }
 
@@ -24,9 +25,10 @@ function* showAlert(alert) {
 }
 
 export default function* appSaga() {
-  yield takeEvery(APP.SHOW_ALERT, hideAlert)
+  yield takeLatest(APP.SHOW_ALERT, hideAlert)
   yield takeEvery(EMPLOYE_DETAILS.DELETE, () => showAlert(alert.deleting))
   yield takeEvery(EMPLOYE_DETAILS.DELETE_SUCCESS, () => showAlert(alert.deleted))
   yield takeEvery(EMPLOYE_DETAILS.DELETE_FAILURE, () => showAlert(alert.wrong))
   yield takeEvery(EMPLOYE_DETAILS.UNLOAD_SUCCESS, () => showAlert(alert.saved))
+  yield takeEvery(EMPLOYE_DETAILS.UNLOAD, () => showAlert(alert.saving))
 }
