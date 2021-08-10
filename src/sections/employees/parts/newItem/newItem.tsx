@@ -1,10 +1,10 @@
 import {useState} from "react"
 import {Button} from "react-bootstrap"
 import {useDispatch} from "react-redux"
-import {DetailsForm} from "../../components/detailsForm"
-import {DetailsField} from "../../lib/interfaces"
+import {DetailsForm} from "../../../../components/detailsForm"
+import {DetailsField} from "../../../../lib/interfaces"
 import styles from "./newItem.module.css"
-import {saveNewOne} from "./../../redux/reducers/employeDetails/actions"
+import {saveNewOne} from "../../../../redux/reducers/employeDetails/actions"
 
 interface Props {
   onClick: (e?: any) => void

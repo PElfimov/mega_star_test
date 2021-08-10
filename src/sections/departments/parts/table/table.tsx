@@ -4,7 +4,11 @@ import {Dropdown} from "../../../../components/dropdown"
 import {useSelector} from "react-redux"
 import {selectDepartments} from "../../../../redux/reducers/selectors/selectors"
 
-export function Table() {
+interface Props {
+  onClick: (e?: any) => void
+}
+
+export function Table({onClick}: Props) {
   const departments = useSelector(selectDepartments)
   const {loading, data} = departments
 
@@ -44,7 +48,9 @@ export function Table() {
           </tbody>
         </BootstrapTable>
       )}
-      <Button variant="primary">Add New</Button>
+      <Button variant="primary" onClick={onClick}>
+        Add New
+      </Button>
     </>
   )
 }

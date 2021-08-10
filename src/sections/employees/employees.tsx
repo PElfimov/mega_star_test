@@ -1,5 +1,5 @@
 import {useState} from "react"
-import {NewItem} from "../newItem/newItem"
+import {NewItem} from "./parts/newItem/newItem"
 import {Table} from "./parts/table"
 
 export function Employees() {

@@ -1,3 +1,4 @@
+import {history} from "./../../reducers/index"
 import {DEPARTMENTS} from "../../reducers/departments/types"
 import {DEPARTMENT_DETAILS} from "../../reducers/departmentDetails/types"
 import {getRoutingConfig, ROUTES_NAME} from "./../../../sections/app/routes"
@@ -6,7 +7,7 @@ import {LOCATION_CHANGE} from "connected-react-router"
 import {call, fork, take, put, takeEvery, select} from "redux-saga/effects"
 import {matchPath} from "react-router"
 import api from "../../../lib/api"
-import { APP } from "../../reducers/app/types"
+import {APP} from "../../reducers/app/types"
 
 const PATH = `departments`
 
@@ -34,14 +35,14 @@ function* loadDepartmentDetails(data) {
 }
 
 function* loadDepartmentsList() {
-  try{
+  try {
     const request = yield call(() => api({method: `get`, path: PATH}))
     const data = request.data
     yield put({
       type: DEPARTMENTS.LOAD_SUCCESS,
       payload: data
     })
-  }catch (error) {
+  } catch (error) {
     yield put({
       type: DEPARTMENTS.LOAD_FAILURE,
       payload: error
@@ -92,9 +93,40 @@ function* saveDepartment(data) {
   }
 }
 
+function* delDepartment(data) {
+  try {
+    yield call(() => api({method: `delete`, path: PATH, id: data.payload}))
+    yield put({
+      type: DEPARTMENT_DETAILS.DELETE_SUCCESS
+    })
+  } catch (error) {
+    yield put({
+      type: DEPARTMENT_DETAILS.DELETE_FAILURE,
+      payload: error
+    })
+  }
+}
+
+function* saveNew(data) {
+  try {
+    const request = yield call(() => api({method: `post`, path: PATH, data: data.payload}))
+    yield put({type: DEPARTMENT_DETAILS.SAVE_NEW_SUCCESS})
+    const id = request.data.id
+    history.push(`/${PATH}/${id}`)
+  } catch (error) {
+    yield put({
+      type: DEPARTMENT_DETAILS.SAVE_NEW_FAILURE,
+      payload: error
+    })
+  }
+}
+
 export default function* departmentsSaga() {
   yield fork(routeChange)
   yield takeEvery(DEPARTMENTS.LOAD, loadDepartmentsList)
   yield takeEvery(DEPARTMENT_DETAILS.LOAD, loadDepartmentDetails)
   yield takeEvery(DEPARTMENT_DETAILS.UNLOAD, saveDepartment)
+  yield takeEvery(DEPARTMENT_DETAILS.DELETE, delDepartment)
+  yield takeEvery(DEPARTMENT_DETAILS.DELETE_SUCCESS, loadDepartmentsList)
+  yield takeEvery(DEPARTMENT_DETAILS.SAVE_NEW, saveNew)
 }
