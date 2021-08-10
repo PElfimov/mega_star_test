@@ -24,7 +24,6 @@ export function Table({onClick}: Props) {
           <thead>
             <tr>
               <th>#</th>
-              <th>Status</th>
               <th>Name</th>
               <th>Description</th>
               <th>Action</th>
@@ -36,7 +35,6 @@ export function Table({onClick}: Props) {
                 return (
                   <tr key={item.id}>
                     <td>{item.id}</td>
-                    <td>{item.status}</td>
                     <td>{item.name}</td>
                     <td>{item.description}</td>
                     <td>
