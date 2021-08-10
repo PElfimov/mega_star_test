@@ -11,6 +11,7 @@ export function Departments() {
 
   return (
     <>
+      <h3>Departments</h3>
       {!isShowNewItem && <Table onClick={onClick} />}
       {isShowNewItem && <NewItem onClick={onClick} />}
     </>

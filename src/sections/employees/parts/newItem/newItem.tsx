@@ -50,7 +50,7 @@ export function NewItem({onClick}: Props) {
 
   return (
     <div className={styles.root}>
-      <h3>New</h3>
+      <h4>New</h4>
       <DetailsForm field={field} />
       <Button variant="primary" type="button" className={`m-2`} onClick={onClick}>
         Back
