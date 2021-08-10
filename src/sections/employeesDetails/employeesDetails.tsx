@@ -1,13 +1,14 @@
-import {Button, Spinner} from "react-bootstrap"
+import {Spinner} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
-import {unblockedForm, blockedForm} from "../../redux/reducers/app/actions"
+import {blockedForm} from "../../redux/reducers/app/actions"
 import {saveEmploye, updateEmploye} from "../../redux/reducers/employeDetails/actions"
 import {getBlockedForm, getEmploye, getEmployeLoading} from "../../redux/reducers/selectors/selectors"
 
 import styles from "./employeesDetails.module.css"
 import {history} from "./../../redux/reducers/index"
+import {ButtonGroup} from "../../components/buttonGroup/buttonGroup"
 
 export function EmployeesDetails() {
   const loading = useSelector(getEmployeLoading)
@@ -73,27 +74,7 @@ export function EmployeesDetails() {
         </div>
       )}
       {!loading && <DetailsForm field={field} />}
-      {formIsBlocked && (
-        <Button
-          variant="primary"
-          type="button"
-          className={`mt-2`}
-          onClick={() => {
-            dispatch(unblockedForm())
-          }}>
-          Edit
-        </Button>
-      )}
-      {!formIsBlocked && (
-        <>
-          <Button variant="primary" type="button" className={`m-2`} onClick={onCancel}>
-            Cancel
-          </Button>
-          <Button variant="primary" type="button" className={`m-2`} onClick={onSave}>
-            Save
-          </Button>
-        </>
-      )}
+      <ButtonGroup onCancel={onCancel} onSave={onSave} />
     </div>
   )
 }
