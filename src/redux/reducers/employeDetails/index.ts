@@ -67,6 +67,31 @@ export default function employeDetailsReducer(state = initialEmployeDetailsState
       }
     }
 
+    case EMPLOYE_DETAILS.SAVE_NEW: {
+      return {
+        ...state,
+        unloading: true,
+        data: action.payload
+      }
+    }
+
+    case EMPLOYE_DETAILS.SAVE_NEW_SUCCESS: {
+      return {
+        ...state,
+        unloading: false,
+        data: action.payload
+      }
+    }
+
+    case EMPLOYE_DETAILS.SAVE_NEW_FAILURE: {
+      return {
+        ...state,
+        unloading: false,
+        error: action.payload
+      }
+    }
+    
+
     default:
       return state
   }
