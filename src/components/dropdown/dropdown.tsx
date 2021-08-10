@@ -1,6 +1,7 @@
 import {Dropdown as BootstrapDropdown} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {Link} from "react-router-dom"
+import {delDepartment} from "../../redux/reducers/departmentDetails/actions"
 import {delEmploye} from "../../redux/reducers/employeDetails/actions"
 import {currentPath} from "../../redux/reducers/selectors/selectors"
 
@@ -12,10 +13,15 @@ export function Dropdown({id}: Props) {
   const path = useSelector(currentPath)
   const dispatch = useDispatch()
 
+  const delElement = (id) => {
+    if (path === `/departments`) return delDepartment(id)
+    if (path === `/employees`) return delEmploye(id)
+  }
+
   const onClick = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(delEmploye(id))
+    dispatch(delElement(id))
   }
 
   return (
