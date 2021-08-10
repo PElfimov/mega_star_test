@@ -64,16 +64,13 @@ export function EmployeesDetails() {
       onChange: onChangeHandler
     }
   ]
+  let HTML: JSX.Element = <DetailsForm field={field} />
+  if (loading) HTML = <Spinner animation="border" />
 
   return (
     <div className={styles.root}>
       <h3>Employees Details</h3>
-      {loading && (
-        <div className={styles.spinnerWrapper}>
-          <Spinner animation="border" />
-        </div>
-      )}
-      {!loading && <DetailsForm field={field} />}
+      {HTML}
       <ButtonGroup onCancel={onCancel} onSave={onSave} />
     </div>
   )

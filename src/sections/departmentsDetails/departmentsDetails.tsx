@@ -7,6 +7,7 @@ import styles from "./departmentsDetails.module.css"
 import {history} from "./../../redux/reducers/index"
 import {blockedForm, unblockedForm} from "../../redux/reducers/app/actions"
 import {saveDepartment, updateDepartment} from "./../../redux/reducers/departmentDetails/actions"
+import {ButtonGroup} from "../../components/buttonGroup"
 
 export function DepartmentsDetails() {
   const {data, loading} = useSelector(getDepartmentDetails)
@@ -55,36 +56,14 @@ export function DepartmentsDetails() {
     }
   ]
 
+  let HTML: JSX.Element = <DetailsForm field={field} />
+  if (loading) HTML = <Spinner animation="border" />
+
   return (
     <div className={styles.root}>
       <h3>Departments Details</h3>
-      {loading && (
-        <div className={styles.spinnerWrapper}>
-          <Spinner animation="border" />
-        </div>
-      )}
-      {!loading && <DetailsForm field={field} />}
-      {formIsBlocked && (
-        <Button
-          variant="primary"
-          type="button"
-          className={`mt-2`}
-          onClick={() => {
-            dispatch(unblockedForm())
-          }}>
-          Edit
-        </Button>
-      )}
-      {!formIsBlocked && (
-        <>
-          <Button variant="primary" type="button" className={`m-2`} onClick={onCancel}>
-            Cancel
-          </Button>
-          <Button variant="primary" type="button" className={`m-2`} onClick={onSave}>
-            Save
-          </Button>
-        </>
-      )}
+      {HTML}
+      <ButtonGroup onCancel={onCancel} onSave={onSave} />
     </div>
   )
 }
