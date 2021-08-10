@@ -29,9 +29,7 @@ export function EmployeesDetails() {
   const onSave = (event) => {
     event.preventDefault()
     event.stopPropagation()
-    console.log("before ", data)
     dispatch(saveEmploye(data))
-    console.log("after ", data)
   }
 
   const field: DetailsField[] = [
@@ -40,7 +38,7 @@ export function EmployeesDetails() {
       name: `id`,
       disabled: true,
       vale: data?.id,
-      onChange: () => {}
+      onChange: onChangeHandler
     },
     {
       label: `Name`,
