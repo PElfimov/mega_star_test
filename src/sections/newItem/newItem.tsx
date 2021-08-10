@@ -3,10 +3,8 @@ import {Button} from "react-bootstrap"
 import {useDispatch} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
-import {showAlert} from "../../redux/reducers/app/actions"
-import {saveEmploye} from "../../redux/reducers/employeDetails/actions"
-
 import styles from "./newItem.module.css"
+import {saveNewOne} from "./../../redux/reducers/employeDetails/actions"
 
 interface Props {
   onClick: (e?: any) => void
@@ -23,8 +21,7 @@ export function NewItem({onClick}: Props) {
   const onSave = (event) => {
     event.preventDefault()
     event.stopPropagation()
-    dispatch(saveEmploye(state))
-    dispatch(showAlert({text: `Saving is in progress ....`, type: `warning`}))
+    dispatch(saveNewOne(state))
   }
 
   const field: DetailsField[] = [

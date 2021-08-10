@@ -27,3 +27,13 @@ export function delEmploye(id) {
     payload: id
   }
 }
+
+
+export function saveNewOne(data) {
+  return {
+    type: EMPLOYE_DETAILS.SAVE_NEW,
+    payload: data
+  }
+}
+
+
