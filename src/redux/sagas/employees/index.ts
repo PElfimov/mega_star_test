@@ -7,6 +7,7 @@ import {call, fork, take, put, takeEvery, select} from "redux-saga/effects"
 import {matchPath} from "react-router"
 import api from "../../../lib/api"
 import {APP} from "../../reducers/app/types"
+import { history } from './../../reducers/index';
 
 const PATH = `employees`
 
@@ -104,6 +105,20 @@ function* delEmploye(data) {
   }
 }
 
+function* saveNew(data) {
+  try {
+    const request = yield call(() => api({method: `post`, path: PATH, data: data.payload}))
+    yield put({type: EMPLOYE_DETAILS.SAVE_NEW_SUCCESS})
+    const id = request.data.id
+    history.push(`/${PATH}/${id}`)
+  } catch (error) {
+    yield put({
+      type: EMPLOYE_DETAILS.SAVE_NEW_FAILURE,
+      payload: error
+    })
+  }
+}
+
 export default function* employeesSaga() {
   yield fork(routeChange)
   yield takeEvery(EMPLOYEES.LOAD, loadEmployeesList)
@@ -111,4 +126,5 @@ export default function* employeesSaga() {
   yield takeEvery(EMPLOYE_DETAILS.UNLOAD, saveEmploye)
   yield takeEvery(EMPLOYE_DETAILS.DELETE, delEmploye)
   yield takeEvery(EMPLOYE_DETAILS.DELETE_SUCCESS, loadEmployeesList)
+  yield takeEvery(EMPLOYE_DETAILS.SAVE_NEW, saveNew)
 }
