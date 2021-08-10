@@ -1,11 +1,11 @@
-import {Button, Spinner} from "react-bootstrap"
+import {Spinner} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import {DetailsForm} from "../../components/detailsForm"
 import {DetailsField} from "../../lib/interfaces"
 import {getBlockedForm, getDepartmentDetails} from "../../redux/reducers/selectors/selectors"
 import styles from "./departmentsDetails.module.css"
 import {history} from "./../../redux/reducers/index"
-import {blockedForm, unblockedForm} from "../../redux/reducers/app/actions"
+import {blockedForm} from "../../redux/reducers/app/actions"
 import {saveDepartment, updateDepartment} from "./../../redux/reducers/departmentDetails/actions"
 import {ButtonGroup} from "../../components/buttonGroup"
 

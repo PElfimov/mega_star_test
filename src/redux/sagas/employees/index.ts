@@ -7,7 +7,7 @@ import {call, fork, take, put, takeEvery, select} from "redux-saga/effects"
 import {matchPath} from "react-router"
 import api from "../../../lib/api"
 import {APP} from "../../reducers/app/types"
-import { history } from './../../reducers/index';
+import {history} from "./../../reducers/index"
 
 const PATH = `employees`
 
@@ -44,7 +44,7 @@ function* loadEmployeesList() {
     })
   } catch (error) {
     yield put({
-      type: EMPLOYE_DETAILS.LOAD_FAILURE,
+      type: EMPLOYEES.LOAD_FAILURE,
       payload: error
     })
   }

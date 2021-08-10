@@ -1,3 +1,5 @@
+import {EMPLOYEES} from "./../../reducers/employees/types"
+import {DEPARTMENTS} from "./../../reducers/departments/types"
 import {takeEvery, put, delay, takeLatest} from "redux-saga/effects"
 
 import {APP} from "../../reducers/app/types"
@@ -44,4 +46,7 @@ export default function* appSaga() {
   yield takeEvery(DEPARTMENT_DETAILS.SAVE_NEW, () => showAlert(alert.saving))
   yield takeEvery(DEPARTMENT_DETAILS.SAVE_NEW_SUCCESS, () => showAlert(alert.saved))
   yield takeEvery(DEPARTMENT_DETAILS.SAVE_NEW_FAILURE, () => showAlert(alert.wrong))
+
+  yield takeEvery(DEPARTMENTS.LOAD_FAILURE, () => showAlert(alert.wrong))
+  yield takeEvery(EMPLOYEES.LOAD_FAILURE, () => showAlert(alert.wrong))
 }
