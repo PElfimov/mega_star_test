@@ -54,7 +54,7 @@ export function DepartmentsDetails() {
       onChange: onChangeHandler
     }
   ]
-  console.log(field)
+
   return (
     <div className={styles.root}>
       <h3>Departments Details</h3>

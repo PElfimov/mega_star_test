@@ -6,6 +6,7 @@ import {LOCATION_CHANGE} from "connected-react-router"
 import {call, fork, take, put, takeEvery, select} from "redux-saga/effects"
 import {matchPath} from "react-router"
 import api from "../../../lib/api"
+import { APP } from "../../reducers/app/types"
 
 const PATH = `departments`
 
@@ -33,12 +34,19 @@ function* loadDepartmentDetails(data) {
 }
 
 function* loadDepartmentsList() {
-  const request = yield call(() => api({method: `get`, path: PATH}))
-  const data = request.data
-  yield put({
-    type: DEPARTMENTS.LOAD_SUCCESS,
-    payload: data
-  })
+  try{
+    const request = yield call(() => api({method: `get`, path: PATH}))
+    const data = request.data
+    yield put({
+      type: DEPARTMENTS.LOAD_SUCCESS,
+      payload: data
+    })
+  }catch (error) {
+    yield put({
+      type: DEPARTMENTS.LOAD_FAILURE,
+      payload: error
+    })
+  }
 }
 
 export function* routeChange() {
@@ -71,8 +79,22 @@ export function* routeChange() {
   }
 }
 
+function* saveDepartment(data) {
+  try {
+    yield call(() => api({method: `post`, path: PATH, data: data.payload}))
+    yield put({type: DEPARTMENT_DETAILS.UNLOAD_SUCCESS})
+    yield put({type: APP.FORM_BLOCKED})
+  } catch (error) {
+    yield put({
+      type: DEPARTMENT_DETAILS.UNLOAD_FAILURE,
+      payload: error
+    })
+  }
+}
+
 export default function* departmentsSaga() {
   yield fork(routeChange)
   yield takeEvery(DEPARTMENTS.LOAD, loadDepartmentsList)
   yield takeEvery(DEPARTMENT_DETAILS.LOAD, loadDepartmentDetails)
+  yield takeEvery(DEPARTMENT_DETAILS.UNLOAD, saveDepartment)
 }
