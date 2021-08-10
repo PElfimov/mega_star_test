@@ -31,6 +31,58 @@ export default function departmentDetailsReducer(state = initialDepartmentDetail
         error: action.payload
       }
     }
+    case DEPARTMENT_DETAILS.UNLOAD: {
+      return {
+        ...state,
+        unloading: true
+      }
+    }
+
+    case DEPARTMENT_DETAILS.UNLOAD_SUCCESS: {
+      return {
+        ...state,
+        unloading: false,
+        data: action.payload
+      }
+    }
+
+    case DEPARTMENT_DETAILS.UNLOAD_FAILURE: {
+      return {
+        ...state,
+        unloading: false,
+        error: action.payload
+      }
+    }
+    case DEPARTMENT_DETAILS.PUT: {
+      return {
+        ...state,
+        data: action.payload
+      }
+    }
+
+    case DEPARTMENT_DETAILS.SAVE_NEW: {
+      return {
+        ...state,
+        unloading: true,
+        data: action.payload
+      }
+    }
+
+    case DEPARTMENT_DETAILS.SAVE_NEW_SUCCESS: {
+      return {
+        ...state,
+        unloading: false,
+        data: action.payload
+      }
+    }
+
+    case DEPARTMENT_DETAILS.SAVE_NEW_FAILURE: {
+      return {
+        ...state,
+        unloading: false,
+        error: action.payload
+      }
+    }
 
     default:
       return state
