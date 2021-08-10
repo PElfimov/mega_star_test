@@ -7,6 +7,16 @@ import {matchPath} from "react-router"
 export function Navigation() {
   const data = useSelector((s: RootStore) => s.router)
   const activeButton = (path) => matchPath(data.location.pathname, path)
+
+  const isActiveButton = (path) => {
+    let status = activeButton(path)
+    if (data.location.pathname === `/` && path === `/departments`) {
+      status = true
+    }
+
+    return status && `active`
+  }
+
   const button = [
     {
       name: "Departments",
@@ -25,7 +35,7 @@ export function Navigation() {
       {button.map((item) => {
         return (
           <Nav.Item key={item.name}>
-            <Link className={`nav-link ${activeButton(item.path) && `active`}`} to={item.path}>
+            <Link className={`nav-link ${isActiveButton(item.path)}`} to={item.path}>
               {item.name}
             </Link>
           </Nav.Item>
