@@ -5,7 +5,11 @@ import {useSelector} from "react-redux"
 import {selectEmployees} from "../../../../redux/reducers/selectors/selectors"
 import {Dropdown} from "../../../../components/dropdown"
 
-export function Table() {
+interface Props {
+  onClick: (e?: any) => void
+}
+
+export function Table({onClick}: Props) {
   const {loading, data} = useSelector(selectEmployees)
 
   return (
@@ -44,7 +48,9 @@ export function Table() {
           </tbody>
         </BootstrapTable>
       )}
-      <Button variant="primary">Add New</Button>
+      <Button variant="primary" onClick={onClick}>
+        Add New
+      </Button>
     </>
   )
 }
