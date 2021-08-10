@@ -78,7 +78,7 @@ export interface Routes {
 export interface DetailsField {
   label: string
   name: string
-  disabled: boolean
+  disabled?: boolean
   vale?: string | number
   onChange: (e?: any) => void
 }

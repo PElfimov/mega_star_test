@@ -3,9 +3,10 @@ import {Switch} from "react-router-dom"
 import {Routes as RoutesType} from "../../lib/interfaces"
 import {Departments} from "../departments"
 import {Employees} from "../employees"
-import {DepartmentsDetails} from "../departmentsDetails"
+
 import {Error404} from "../error404"
 import {EmployeesDetails} from "../employeesDetails"
+import DepartmentsDetails from "../departmentsDetails/departmentsDetails"
 
 export const ROUTES_NAME = {
   MAIN: `MAIN`,
