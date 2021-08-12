@@ -48,8 +48,7 @@ export default function employeDetailsReducer(state = initialEmployeDetailsState
     case EMPLOYE_DETAILS.UNLOAD_SUCCESS: {
       return {
         ...state,
-        unloading: false,
-        data: action.payload
+        unloading: false
       }
     }
 
@@ -90,7 +89,6 @@ export default function employeDetailsReducer(state = initialEmployeDetailsState
         error: action.payload
       }
     }
-    
 
     default:
       return state
