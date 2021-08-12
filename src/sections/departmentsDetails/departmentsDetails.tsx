@@ -13,52 +13,59 @@ import {observer} from "mobx-react"
 import {action, computed, observable} from "mobx"
 
 type Props = {
-  department?: Department
-  loading?: boolean
-  formIsBlocked?: boolean
+  department: Department
+  loading: boolean
+  formIsBlocked: boolean
+  updateDepartment: (e?: any) => void
+  saveDepartment: (e?: any) => void
 }
 
 @observer
 class DepartmentsDetails extends Component<Props> {
-  @observable
-  private department: Department = {id: 0, name: "", status: `active`, description: ""}
-
-  @action
-  _initialState() {
-    this.department = {...this.department, ...this.props.department}
+  constructor(props) {
+    super(props)
+    this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.onSave = this.onSave.bind(this)
   }
+  // @observable
+  // private department: Department = {id: 0, name: "", status: `active`, description: ""}
 
-  @computed
+  // @action
+  // _initialState() {
+  //   this.department = {...this.department, ...this.props.department}
+  // }
+
   get field(): DetailsField[] {
     return [
       {
         label: `Id`,
         name: `id`,
         disabled: true,
-        vale: this.department.id,
+        vale: this.props.department?.id,
         onChange: this.onChangeHandler
       },
       {
         label: `Name`,
         name: `name`,
         disabled: this.props.formIsBlocked,
-        vale: this.department.name,
+        vale: this.props.department?.name,
         onChange: this.onChangeHandler
       },
       {
         label: `Description`,
         name: `description`,
         disabled: this.props.formIsBlocked,
-        vale: this.department.description,
+        vale: this.props.department?.description,
         onChange: this.onChangeHandler
       }
     ]
   }
 
   onChangeHandler(e) {
-    // const value = {...data}
-    // value[e.target.name] = e.target.value
-    // dispatch(updateDepartment(value))
+    const {department, updateDepartment} = this.props
+    const value = {...department}
+    value[e.target.name] = e.target.value
+    updateDepartment(value)
   }
   onCancel(event) {
     // dispatch(blockedForm())
@@ -66,13 +73,23 @@ class DepartmentsDetails extends Component<Props> {
   }
 
   onSave(event) {
-    // dispatch(saveDepartment(data))
+    const {department} = this.props
+
+    this.props.saveDepartment(department)
   }
 
-  componentDidMount() {
-    this._initialState()
-    console.log(`this.department didUpdate`, this.department)
-  }
+  // componentDidMount() {
+  //   this._initialState()
+  //   console.log(`omponentDidMount`, this.department)
+  // }
+  // componentDidCatch() {
+  //   this._initialState()
+  //   console.log(`componentDidCatch`, this.department)
+  // }
+  // componentDidUpdate() {
+  //   this._initialState()
+  //   console.log(`DidUpdate`, this.department)
+  // }
 
   render() {
     const {loading} = this.props //useSelector(getDepartmentDetails)
@@ -96,6 +113,8 @@ const mapStateToProps = (state: RootStore, ownProps) =>
   })
 
 const mapDispatchToProps = (dispatch) => ({
+  updateDepartment: (value) => dispatch(updateDepartment(value)),
+  saveDepartment: (data) => dispatch(saveDepartment(data))
   // changeCity: (city) => {
   //   dispatch(ActionCreator.changeCity(city));
   // },

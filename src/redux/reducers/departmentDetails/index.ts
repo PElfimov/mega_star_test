@@ -41,8 +41,7 @@ export default function departmentDetailsReducer(state = initialDepartmentDetail
     case DEPARTMENT_DETAILS.UNLOAD_SUCCESS: {
       return {
         ...state,
-        unloading: false,
-        data: action.payload
+        unloading: false
       }
     }
 
