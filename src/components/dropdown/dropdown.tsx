@@ -10,8 +10,12 @@ interface Props {
 }
 
 export function Dropdown({id}: Props) {
-  const path = useSelector(currentPath)
+  let path = useSelector(currentPath)
   const dispatch = useDispatch()
+
+  if (path === `/`) {
+    path = `/departments`
+  }
 
   const delElement = (id) => {
     if (path === `/departments`) return delDepartment(id)
