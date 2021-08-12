@@ -20,15 +20,11 @@ export function DepartmentsDetails() {
     dispatch(updateDepartment(value))
   }
   const onCancel = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
     dispatch(blockedForm())
     history.push(`/departments`)
   }
 
   const onSave = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
     dispatch(saveDepartment(data))
   }
 

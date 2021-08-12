@@ -22,15 +22,11 @@ export function EmployeesDetails() {
     dispatch(updateEmploye(value))
   }
   const onCancel = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
     dispatch(blockedForm())
     history.push(`/employees`)
   }
 
   const onSave = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
     dispatch(saveEmploye(data))
   }
 
